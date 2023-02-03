@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body style="background-color:white">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="background-color:blue">
+        <form class="formone" method="post" style="height:403px">
+            <h1 class="" align="center">Book a call</h1>
+            <hr>
+            <label name="NAME" align="left">NAME</label>
+            <input type="text" class="form-control" id="name" name=""><br>
+            <label name="EMAIL" align="left">EMAIL</label><br>
+            <input type="text" id="EMAIL" class="form-control"><br>
+            <label name="PHONE_NO"  align=" left">PHONE NO</label><br>
+            <input type="text" id="phone_no" name="" class="form-control"><br>
+            <button id="btn" class="btn btn-primary value="">getacall</button>
+            <button id="del" class="btn btn-primary value="">DELETE</button>
+            <br><label for="nm" id="tx"></label>
+        </form>
+    </div>
+    
+    <label for="em" value=""></label>
+    <label for="ph" value=""></label>
+    <br>
+
+
+
+
+    
+<script>
+   
+    let form = document.getElementById('btn');
+    let bt2 = document.getElementById('del');
+    form.addEventListener('click',saveform);
+    bt2.addEventListener('click',removeIt);
+    
+
+    function saveform(e){   
+    e.preventDefault();
+    let name = document.getElementById('name');
+    let email =document.getElementById('EMAIL');
+    let pnum = document.getElementById('phone_no');
+    let lb = document.getElementById('tx');
+    lb.appendChild(document.createTextNode(name.value + email.value+ pnum.value));
+
+    let user_records=new Array();
+     user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+
+user_records.push({
+  "name":name.value,
+  "email":email.value,
+  "phoneno":pnum.value
+})
+localStorage.setItem("users",JSON.stringify(user_records));
+  
+ }
+ function removeIt(e){  
+ //   e.preventDefault();
+    let name = document.getElementById('name');
+    let email =document.getElementById('EMAIL');
+    let pnum = document.getElementById('phone_no');
+    let lb = document.getElementById('tx');
+ //   lb.appendChild(document.createTextNode(name.value + email.value+ pnum.value));
+
+    let user_records=new Array();
+     user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+
+user_records.push({
+  "name":name.value,
+  "email":email.value,
+  "phoneno":pnum.value
+})
+localStorage.removeItem("users",JSON.stringify(user_records));
+       /// localStorage.removeItem("name"+"email"+"phoneno")
+ }
+    
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    
+</script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</body>
+
+</html>
+
+
+
+<!--  let myobj = {Name:name.value,Email:email.value,phoneno:pnum.value};
+let nobj=JSON.stringify(myobj);
+localStorage.setItem('myobj', nobj);
+let users =  JSON.parse(localStorage.getItem('myobj'));*/
+
+
+
+/*name.value='';
+email.value='';
+pnum.value='';*/
+
+//console.log(localStorage.getItem('Name'))
+// localStorage.setItem('Email',email.value);
+// localStorage.setItem('phoneno',pnum.value);-->
